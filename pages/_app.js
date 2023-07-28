@@ -12,11 +12,50 @@ const initialAnimals = [
 export default function App({ Component, pageProps }) {
   const [animals, setAnimals] = useState(initialAnimals);
 
+  function handleAdd(animalId) {
+    const updatedAnimals = animals.map((animal) => {
+      if (animal.id === animalId) {
+        // every time we want to change a value of a state, we need to create a new object
+        // we must not mutate / change the existing object
+        const updatedAnimal = {
+          ...animal,
+          count: animal.count + 1,
+        };
+        return updatedAnimal;
+      } else {
+        return animal;
+      }
+    });
+
+    setAnimals(updatedAnimals);
+  }
+
+  function handleSubtract(animalId) {
+    const updatedAnimals = animals.map((animal) => {
+      if (animal.id === animalId) {
+        const updatedAnimal = {
+          ...animal,
+          count: animal.count > 0 ? animal.count - 1 : 0,
+        };
+        return updatedAnimal;
+      } else {
+        return animal;
+      }
+    });
+
+    setAnimals(updatedAnimals);
+  }
+
   return (
     <>
       <GlobalStyle />
       <Layout>
-        <Component {...pageProps} animals={animals} />
+        <Component
+          {...pageProps}
+          animals={animals}
+          handleAdd={handleAdd}
+          handleSubtract={handleSubtract}
+        />
       </Layout>
     </>
   );

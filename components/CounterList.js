@@ -10,7 +10,7 @@ const List = styled.ul`
   gap: 1rem;
 `;
 
-export default function CounterList({ animals }) {
+export default function CounterList({ animals, handleAdd, handleSubtract }) {
   return (
     <>
       <h2>Counters</h2>
@@ -21,6 +21,8 @@ export default function CounterList({ animals }) {
               key={animal.id}
               animalName={animal.name}
               count={animal.count}
+              onAdd={() => handleAdd(animal.id)}
+              onSub={() => handleSubtract(animal.id)}
             />
           );
         })}
