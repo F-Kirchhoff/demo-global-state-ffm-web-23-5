@@ -11,16 +11,10 @@ const AnimalName = styled.strong`
   width: 5rem;
 `;
 
-export default function Counter({ animalName }) {
-  const [count, setCount] = useState(0);
+export default function Counter({ animalName, count }) {
+  function handleAdd() {}
 
-  function handleAdd() {
-    setCount(count + 1);
-  }
-
-  function handleSubtract() {
-    setCount(Math.max(0, count - 1));
-  }
+  function handleSubtract() {}
 
   return (
     <Container>

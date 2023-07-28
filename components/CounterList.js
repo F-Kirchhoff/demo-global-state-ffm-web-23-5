@@ -10,15 +10,24 @@ const List = styled.ul`
   gap: 1rem;
 `;
 
-export default function CounterList() {
+export default function CounterList({ animals }) {
   return (
     <>
       <h2>Counters</h2>
       <List>
-        <Counter animalName={"Cats"} />
+        {animals.map((animal) => {
+          return (
+            <Counter
+              key={animal.id}
+              animalName={animal.name}
+              count={animal.count}
+            />
+          );
+        })}
+        {/* <Counter animalName={"Cats"} />
         <Counter animalName={"Dogs"} />
         <Counter animalName={"Sheep"} />
-        <Counter animalName={"Dragons"} />
+        <Counter animalName={"Dragons"} /> */}
       </List>
     </>
   );
