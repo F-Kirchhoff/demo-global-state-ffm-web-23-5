@@ -36,15 +36,15 @@ const Container = styled.div`
   gap: 1rem;
 `;
 
-export default function Layout({ children }) {
+export default function Layout({ children, sum, dragonCount }) {
   return (
     <>
       <StyledHeader>
-        <Header />
+        <Header sum={sum} />
       </StyledHeader>
       <Container>{children}</Container>
       <StyledFooter>
-        <Footer />
+        <Footer dragonCount={dragonCount} />
       </StyledFooter>
     </>
   );

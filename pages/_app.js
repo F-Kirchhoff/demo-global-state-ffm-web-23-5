@@ -12,6 +12,16 @@ const initialAnimals = [
 export default function App({ Component, pageProps }) {
   const [animals, setAnimals] = useState(initialAnimals);
 
+  const animalCounts = animals.map((animal) => animal.count);
+
+  // sum up all entries from animalCounts
+  const sum = animalCounts.reduce((acc, currentValue) => acc + currentValue, 0);
+  console.log(sum);
+  const average = sum / animals.length;
+
+  const dragonObject = animals.find((animal) => animal.name === "Dragons");
+  const dragonCount = dragonObject.count;
+
   function handleAdd(animalId) {
     const updatedAnimals = animals.map((animal) => {
       if (animal.id === animalId) {
@@ -49,12 +59,15 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Layout>
+      <Layout sum={sum} dragonCount={dragonCount}>
         <Component
           {...pageProps}
           animals={animals}
           handleAdd={handleAdd}
           handleSubtract={handleSubtract}
+          sum={sum}
+          average={average}
+          dragonCount={dragonCount}
         />
       </Layout>
     </>
